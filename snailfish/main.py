@@ -1,7 +1,6 @@
 import re
 from functools import reduce
 
-
 split_pattern = re.compile(r"(\d{2})")
 
 
@@ -74,7 +73,6 @@ number_pattern = re.compile(r"(\d+).*")
 
 
 def explode(number_string):
-
     result = ""
     level = 0
     skip_until_index = 0
@@ -114,8 +112,22 @@ def explode(number_string):
     return result, modified
 
 
+def max_magnitude(lines):
+    max_element = 0
+    for number1 in lines:
+        for number2 in lines:
+            max_element = max(magnitude(_add(number1, number2)), max_element)
+
+    return max_element
+
+
 if __name__ == '__main__':
     with open("input") as f:
         lines = f.readlines()
         lines = [line.rstrip() for line in lines]
-        print(f"Final Result: {magnitude(_sum(lines))}")
+        mag = magnitude(_sum(lines))
+
+        _max = max_magnitude(lines)
+
+        print(f"Final Result Part I: {mag}")
+        print(f"Final Result Part II: {_max}")
