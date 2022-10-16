@@ -58,7 +58,6 @@ def _sum(list_to_sum):
 
 last_number_pattern = re.compile(r"(\d+)\D*$")
 
-
 def add_to_left_number(number, s):
     m = last_number_pattern.search(s)
     if m:
@@ -72,7 +71,8 @@ def add_to_left_number(number, s):
 number_pattern = re.compile(r"(\d+).*")
 
 
-def explode(number_string):
+def explode(number_string: str) -> str:
+
     result = ""
     level = 0
     skip_until_index = 0
